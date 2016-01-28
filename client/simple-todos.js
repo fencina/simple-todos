@@ -1,3 +1,5 @@
+Meteor.subscribe("tasks");
+
 Template.body.helpers({
     tasks: function(){
         if(Session.get("hideCompleted")){
@@ -34,6 +36,12 @@ Template.body.events({
 
 })
 
+Template.task.helpers({
+    isOwner: function(){
+        return this.userId === Meteor.userId();
+    }
+})
+
 Template.task.events({
     "click .delete" : function(){
         Meteor.call("deleteTask", this._id);
@@ -41,9 +49,14 @@ Template.task.events({
 
     "click .toggle-checked" : function(){
         Meteor.call("setChecked", this._id, this.checked)
+    },
+
+    "click .toggle-private": function(){
+        Meteor.call("setPermiso", this._id, !this.private)
     }
 
 })
+
 
 Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"

@@ -11,7 +11,8 @@ Meteor.methods({
             text: text,
             createdAt: new Date(),
             userId: Meteor.userId(),
-            username: Meteor.user().username
+            username: Meteor.user().username,
+            private: false
         })
     },
 
@@ -21,6 +22,10 @@ Meteor.methods({
 
     setChecked: function(taskId,checked){
         Tasks.update(taskId, { $set: { checked: !checked} });
+    },
+
+    setPermiso: function(taskId, permiso){
+        Tasks.update(taskId, {$set: {private: permiso}});
     }
 
 })
