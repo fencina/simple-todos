@@ -1,6 +1,8 @@
 Tasks = new Mongo.Collection("tasks");
+Palabras = new Mongo.Collection("palabras");
 
 Meteor.methods({
+    // Todo List
     addTask: function(text){
 
         if(!Meteor.userId()){
@@ -26,6 +28,11 @@ Meteor.methods({
 
     setPermiso: function(taskId, permiso){
         Tasks.update(taskId, {$set: {private: permiso}});
+    },
+
+    //Words
+    removePalabraActual: function(palabraId){
+        Palabras.remove(palabraId);
     }
 
 })

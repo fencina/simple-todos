@@ -3,6 +3,11 @@
 </head>
 
 <body>
+
+</body>
+
+<template name="todoList">
+
     <div class="container">
         <header>
             <h1>Todo List ({{ incompleteTasks }})</h1>
@@ -29,7 +34,8 @@
         </ul>
 
     </div>
-</body>
+
+</template>
 
 <template name="task">
     <li class="{{#if checked }} checked {{/if}}">

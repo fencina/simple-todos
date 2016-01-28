@@ -1,5 +1,6 @@
 Meteor.startup(function () {
 // code to run on server at startup
+
     Meteor.publish("tasks", function () {
         return Tasks.find({
             $or: [
@@ -8,5 +9,9 @@ Meteor.startup(function () {
             ]
         });
     })
+
+    Meteor.publish("palabras", function(){
+        return Palabras.find({});
+    });
 
 });

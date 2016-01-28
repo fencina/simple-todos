@@ -1,6 +1,4 @@
-Meteor.subscribe("tasks");
-
-Template.body.helpers({
+Template.todoList.helpers({
     tasks: function(){
         if(Session.get("hideCompleted")){
             return Tasks.find({ checked : {$ne: true}}, {sort: {createdAt: -1}});
@@ -20,7 +18,7 @@ Template.body.helpers({
     }
 })
 
-Template.body.events({
+Template.todoList.events({
     "submit #nuevaTarea" : function(event){
         event.preventDefault();
 
@@ -36,6 +34,7 @@ Template.body.events({
 
 })
 
+// Task
 Template.task.helpers({
     isOwner: function(){
         return this.userId === Meteor.userId();
@@ -58,6 +57,6 @@ Template.task.events({
 })
 
 
-Accounts.ui.config({
-    passwordSignupFields: "USERNAME_ONLY"
-});
+
+
+
